@@ -10,8 +10,6 @@ import isObjKey from '../util/IsObjKey';
 
 class Bot {
 	public logger = consola;
-	// public chatHook = new WebhookClient({ url: process.env.MEMBER_WEBHOOK_URL as string });
-	// public officerChatHook = new WebhookClient({ url: process.env.OFFICER_WEBHOOK_URL as string });
 
 	public onlineCount = 0;
 	public totalCount = 125;

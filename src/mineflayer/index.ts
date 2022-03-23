@@ -4,7 +4,6 @@ config();
 
 // Initialize the bot class
 import Bot from './classes/Bot';
-// Normally the webhook would be passed by discord bot
 const bot = new Bot();
 
 // Export the bot to use elsewhere

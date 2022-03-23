@@ -1,4 +1,4 @@
-import { Client, Intents, WebhookClient } from 'discord.js';
+import { Client, Intents } from 'discord.js';
 import consola from 'consola';
 import fs from 'fs/promises';
 import path from 'path';
@@ -8,7 +8,8 @@ import { EventEmitter } from 'stream';
 
 class Bot extends Client {
 	public logger = consola;
-	public hook = new WebhookClient({ url: process.env.WEBHOOK_URL as string });
+	public memberChannel = this.channels.cache.get(process.env.MEMBER_CHANNEL_ID as string);
+	public officerChannel = this.channels.cache.get(process.env.OFFICER_CHANNEL_ID as string);
 
 	constructor() {
 		super({
