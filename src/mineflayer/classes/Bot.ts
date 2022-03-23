@@ -12,8 +12,7 @@ class Bot {
 	public logger = consola;
 	public chatHook = new WebhookClient({ url: process.env.MEMBER_WEBHOOK_URL as string });
 	public officerChatHook = new WebhookClient({ url: process.env.OFFICER_WEBHOOK_URL as string });
-	// public APIHook = new WebhookClient({ url: process.env.API_WEBHOOK_URL as string });
-	public devHook = new WebhookClient({ url: process.env.DEV_WEBHOOK_URL as string });
+
 	public onlineCount = 0;
 	public totalCount = 125;
 	public mineflayer = createBot({
@@ -33,7 +32,6 @@ class Bot {
 			this.start();
 		} catch (error) {
 			this.logger.error(error);
-			this.devHook.send(`:exclamation: **Mineflayer Component Error** \`\`\`${error}\`\`\``);
 		}
 	}
 
