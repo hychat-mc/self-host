@@ -6,6 +6,8 @@ import Emojis from '../util/Emojis';
 
 export const name = 'chat:guildChat';
 
+export const runOnce = false;
+
 export const run: Execute = async (bot, message: ChatMessage) => {
 	const messageArray: string[] = message.toString().split(',');
 

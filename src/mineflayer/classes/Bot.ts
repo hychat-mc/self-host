@@ -1,17 +1,17 @@
-import { WebhookClient } from 'discord.js';
+//import { WebhookClient } from 'discord.js';
 import { chatPatternOptions, createBot } from 'mineflayer';
 import consola from 'consola';
 import fs from 'fs/promises';
 import path from 'path';
 
-import { EventEmitter } from 'stream';
 import regex from '../util/Regex';
 import { Event } from '../interfaces/Event';
+import isObjKey from '../util/IsObjKey';
 
 class Bot {
 	public logger = consola;
-	public chatHook = new WebhookClient({ url: process.env.MEMBER_WEBHOOK_URL as string });
-	public officerChatHook = new WebhookClient({ url: process.env.OFFICER_WEBHOOK_URL as string });
+	// public chatHook = new WebhookClient({ url: process.env.MEMBER_WEBHOOK_URL as string });
+	// public officerChatHook = new WebhookClient({ url: process.env.OFFICER_WEBHOOK_URL as string });
 
 	public onlineCount = 0;
 	public totalCount = 125;
@@ -43,18 +43,19 @@ class Bot {
 		this.mineflayer.chat(message);
 	}
 
-	private async loadEvents(dir = '../events', emitter: EventEmitter) {
+	private async loadEvents(dir = '../events') {
 		const files = await fs.readdir(path.join(__dirname, dir));
+		const options: chatPatternOptions = { repeat: true, parse: true };
 
 		for (const file of files) {
 			const stat = await fs.lstat(path.join(__dirname, dir, file));
 
 			if (stat.isDirectory()) {
-				await this.loadEvents(path.join(dir, file), emitter);
+				await this.loadEvents(path.join(dir, file));
 			} else {
 				if (!(file.endsWith('.ts') || file.endsWith('.js'))) continue;
 				try {
-					const { name, run } = (await import(path.join(__dirname, dir, file))) as Event;
+					const { name, run, runOnce } = (await import(path.join(__dirname, dir, file))) as Event;
 
 					if (!name) {
 						console.warn(`The event ${path.join(__dirname, dir, file)} doesn't have a name!`);
@@ -66,34 +67,29 @@ class Bot {
 						continue;
 					}
 
-					emitter.on(name, run.bind(null, this));
+					if (isObjKey(name, regex)) {
+						this.mineflayer.addChatPattern(name, regex[name], options);
+						continue;
+					}
+
+					if (runOnce) {
+						this.mineflayer.once(name, (...params: any[]) => run(this, ...params));
+						continue;
+					}
+
+					this.mineflayer.on(name, (...params: any[]) => run(this, ...params));
+
 					// eslint-disable-next-line @typescript-eslint/no-explicit-any
 				} catch (e: any) {
 					console.warn(`Error while loading events: ${e.message}`);
 				}
 			}
 		}
-
-		const options: chatPatternOptions = { repeat: true, parse: true };
-
-		this.mineflayer.addChatPattern('guildChat', regex.guildChat, options);
-		this.mineflayer.addChatPattern('joinLeave', regex.joinLeave, options);
-		this.mineflayer.addChatPattern('memberCount', regex.memberCount, options);
-		this.mineflayer.addChatPattern('memberJoin', regex.memberJoin, options);
-		this.mineflayer.addChatPattern('memberLeave', regex.memberLeave, options);
-		this.mineflayer.addChatPattern('memberKicked', regex.memberKicked, options);
-		this.mineflayer.addChatPattern('promotedDemoted', regex.promotedDemoted, options);
-		this.mineflayer.addChatPattern('guildLevelUp', regex.guildLevelUp, options);
-		this.mineflayer.addChatPattern('questTierComplete', regex.questTierComplete, options);
-		this.mineflayer.addChatPattern('questComplete', regex.questComplete, options);
-		this.mineflayer.addChatPattern('lobbyJoin', regex.lobbyJoin, options);
-		this.mineflayer.addChatPattern('commentBlocked', regex.commentBlocked, options);
-		this.mineflayer.addChatPattern('sameMessageTwice', regex.sameMessageTwice, options);
 	}
 
 	private async start() {
 		this.mineflayer.setMaxListeners(20);
-		await this.loadEvents('../events', this.mineflayer);
+		await this.loadEvents();
 	}
 }
 

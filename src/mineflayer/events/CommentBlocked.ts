@@ -2,6 +2,8 @@ import { Execute } from '../interfaces/Event';
 
 export const name = 'chat:commentBlocked';
 
+export const runOnce = false;
+
 export const run: Execute = async (bot, message) => {
 	const messageArray: string[] = message.toString().split(',');
 

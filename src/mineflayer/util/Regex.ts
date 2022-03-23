@@ -21,7 +21,7 @@ export default {
 	 *  - Guild Rank
 	 *  - Message
 	 */
-	guildChat: /^(Guild|Officer) > (\[.*]\s*)?(\w{2,17}).*?(\[.{1,15}])?: (.*)$/,
+	'chat:guildChat': /^(Guild|Officer) > (\[.*]\s*)?(\w{2,17}).*?(\[.{1,15}])?: (.*)$/,
 
 	/**
 	 * When a member connects to or disconnects from Hypixel
@@ -30,7 +30,7 @@ export default {
 	 *  - Player Name
 	 *  - joined / left
 	 */
-	joinLeave: /^Guild > (\w{2,17}).*? (joined|left)\.$/,
+	'chat:joinLeave': /^Guild > (\w{2,17}).*? (joined|left)\.$/,
 
 	/**
 	 * When "/g online" is typed, and the online and total member count is shown
@@ -39,7 +39,7 @@ export default {
 	 *  - Online / Total
 	 *  - Member Count
 	 */
-	memberCount: /^(Online|Total) Members: (\d+)$/,
+	'chat:memberCount': /^(Online|Total) Members: (\d+)$/,
 
 	/**
 	 * When a player joins the guild
@@ -48,7 +48,7 @@ export default {
 	 *  - Hypixel Rank
 	 *  - Player Name
 	 */
-	memberJoin: /^(\[.*]\s*)?(\w{2,17}).*? joined the guild!$/,
+	'chat:memberJoin': /^(\[.*]\s*)?(\w{2,17}).*? joined the guild!$/,
 
 	/**
 	 * When a player leaves the guild
@@ -57,7 +57,7 @@ export default {
 	 *  - Hypixel Rank
 	 *  - Player Name
 	 */
-	memberLeave: /^(\[.*]\s*)?(\w{2,17}).*? left the guild!$/,
+	'chat:memberLeave': /^(\[.*]\s*)?(\w{2,17}).*? left the guild!$/,
 
 	/**
 	 * When a player is kicked from the guild
@@ -68,7 +68,7 @@ export default {
 	 *  - Kicker Hypixel Rank
 	 *  - Kicker Player Name
 	 */
-	memberKicked: /^(\[.*]\s*)?(\w{2,17}).*? was kicked from the guild by (\[.*]\s*)?(\w{2,17}).*?!$/,
+	'chat:memberKicked': /^(\[.*]\s*)?(\w{2,17}).*? was kicked from the guild by (\[.*]\s*)?(\w{2,17}).*?!$/,
 
 	/**
 	 * When a member is promoted or demoted
@@ -80,7 +80,7 @@ export default {
 	 *  - From Rank
 	 *  - To Rank
 	 */
-	promotedDemoted: /^(\[.*]\s*)?(\w{2,17}).*? was (promoted|demoted) from (.*) to (.*)$/,
+	'chat:promotedDemoted': /^(\[.*]\s*)?(\w{2,17}).*? was (promoted|demoted) from (.*) to (.*)$/,
 
 	/**
 	 * When the guild levels up
@@ -88,7 +88,7 @@ export default {
 	 * Returns:
 	 *  - New Guild Level
 	 */
-	guildLevelUp: /^\s{19}The Guild has reached Level (\d*)!$/,
+	'chat:guildLevelUp': /^\s{19}The Guild has reached Level (\d*)!$/,
 
 	/**
 	 * When a guild quest tier is complete
@@ -96,17 +96,17 @@ export default {
 	 * Returns:
 	 *  - Tier Completed
 	 */
-	questTierComplete: /^\s{17}GUILD QUEST TIER (\d*) COMPLETED!$/,
+	'chat:questTierComplete': /^\s{17}GUILD QUEST TIER (\d*) COMPLETED!$/,
 
 	/**
 	 * When all guild quest tiers are complete
 	 */
-	questComplete: /^\s{17}GUILD QUEST COMPLETED!$/,
+	'chat:questComplete': /^\s{17}GUILD QUEST COMPLETED!$/,
 
 	/**
 	 * When the bot detects its not in limbo
 	 */
-	lobbyJoin:
+	'chat:lobbyJoin':
 		/^(?:\s>>>\s)?\[.*]\s[\w]{2,17} (?:joined the lobby!|spooked into the lobby!|slid into the lobby!)(?:\s<<<)?$/,
 
 	/**
@@ -116,9 +116,10 @@ export default {
 	 *  - Comment blocked
 	 *  - Reason
 	 */
-	commentBlocked: /^We blocked your comment "(.+)" as it is breaking our rules because (.+)$/,
+	'chat:commentBlocked': /^We blocked your comment "(.+)" as it is breaking our rules because (.+)$/,
+
 	/**
 	 * When a message is sent repeatedly
 	 */
-	sameMessageTwice: /^You cannot say the same message twice!$/,
+	'chat:sameMessageTwice': /^You cannot say the same message twice!$/,
 };

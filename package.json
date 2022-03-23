@@ -9,7 +9,7 @@
 		"lint": "eslint \"src/**\"",
 		"lint:fix": "yarn lint --fix",
 		"format": "prettier --write \"src/**\"",
-		"dev": "ts-node-dev --respawn --transpile-only --poll ./src/index.ts",
+		"dev": "ts-node-dev --respawn --transpile-only --poll ./src/mineflayer/index.ts",
 		"build": "tsc",
 		"start": "node ."
 	},
