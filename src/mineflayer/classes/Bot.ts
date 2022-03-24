@@ -1,4 +1,3 @@
-//import { WebhookClient } from 'discord.js';
 import { chatPatternOptions, createBot } from 'mineflayer';
 import consola from 'consola';
 import fs from 'fs/promises';
