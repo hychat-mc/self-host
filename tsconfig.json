@@ -38,5 +38,5 @@
 		"incremental": true
 	},
 	"exclude": ["./node_modules/**/*", "**/*.spec.ts"],
-	"include": ["./src"]
+	"include": ["./src", "classes"]
 }
