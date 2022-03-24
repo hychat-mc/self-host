@@ -3,8 +3,6 @@ import { MessageEmbed } from 'discord.js';
 
 export const name = 'chat:guildLevelUp';
 
-export const runOnce = false;
-
 export const run: Execute = async (bot, message) => {
 	const messageArray: string[] = message.toString().split(',');
 

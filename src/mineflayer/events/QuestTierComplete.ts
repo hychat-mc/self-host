@@ -3,8 +3,6 @@ import { MessageEmbed } from 'discord.js';
 
 export const name = 'chat:questTierComplete';
 
-export const runOnce = false;
-
 export const run: Execute = async (bot, completedTier: number) => {
 	const embed = new MessageEmbed()
 		.setTitle('Quest Tier Complete')

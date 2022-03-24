@@ -3,8 +3,6 @@ import { MessageEmbed } from 'discord.js';
 
 export const name = 'chat:questComplete';
 
-export const runOnce = false;
-
 export const run: Execute = async (bot) => {
 	const embed = new MessageEmbed()
 		.setTitle('Quest Complete')

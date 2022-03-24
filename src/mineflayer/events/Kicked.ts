@@ -3,8 +3,6 @@ import error from '../util/Emojis';
 
 export const name = 'chat:kicked';
 
-export const runOnce = false;
-
 export const run: Execute = async (bot, reason: string, loggedIn: boolean) => {
 	// Proxy Reboot
 	if (reason.includes('This proxy is being rebooted.')) {
