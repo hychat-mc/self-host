@@ -1,6 +1,6 @@
-import { MineflayerEvent } from '../../interfaces/Event';
+import { Event } from '../../interfaces/Event';
 
-export const event: MineflayerEvent = {
+export const event: Event = {
 	name: 'chat:commentBlocked',
 	runOnce: false,
 	run: async (bot, message) => {

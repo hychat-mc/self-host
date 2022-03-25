@@ -90,11 +90,11 @@ class Bot {
 	}
 
 	private async start() {
-		await this.discord.login(process.env.BOT_TOKEN);
-
 		this.mineflayer.setMaxListeners(20);
 		await this.loadEvents('../events/discord', this.discord);
 		await this.loadEvents('../events/mineflayer', this.mineflayer);
+
+		await this.discord.login(process.env.BOT_TOKEN);
 	}
 }
 

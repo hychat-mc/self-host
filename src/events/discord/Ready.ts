@@ -1,8 +1,8 @@
 import { TextChannel } from 'discord.js';
 import Bot from '../../classes/Bot';
-import { DiscordEvent } from '../../interfaces/Event';
+import { Event } from '../../interfaces/Event';
 
-export const event: DiscordEvent = {
+export const event: Event = {
 	name: 'ready',
 	runOnce: true,
 	run: async (bot: Bot) => {
