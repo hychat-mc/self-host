@@ -1,7 +1,7 @@
 import { Util } from 'discord.js';
-import { Event } from '../../interfaces/Event';
+import { MineflayerEvent } from '../../interfaces/Event';
 
-export const event: Event = {
+export const event: MineflayerEvent = {
 	name: 'chat:memberKicked',
 	runOnce: false,
 	run: async (bot, message) => {

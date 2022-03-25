@@ -1,8 +1,14 @@
+import { TextChannel } from 'discord.js';
 import Bot from '../../classes/Bot';
-import { Execute } from '../../interfaces/Event';
+import { DiscordEvent } from '../../interfaces/Event';
 
-export const name = 'ready';
+export const event: DiscordEvent = {
+	name: 'ready',
+	runOnce: true,
+	run: async (bot: Bot) => {
+		bot.memberChannel = bot.discord.channels.cache.get(process.env.MEMBER_CHANNEL_ID as string) as TextChannel;
+		bot.officerChannel = bot.discord.channels.cache.get(process.env.OFFICER_CHANNEL_ID as string) as TextChannel;
 
-export const run: Execute = async (bot: Bot) => {
-	bot.discord.user!.setActivity(`${bot.onlineCount} online players | hych.at`, { type: 'WATCHING' });
+		bot.discord.user!.setActivity(`${bot.onlineCount} online players | hych.at`, { type: 'WATCHING' });
+	},
 };

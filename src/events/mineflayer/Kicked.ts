@@ -1,7 +1,7 @@
-import { Event } from '../../interfaces/Event';
+import { MineflayerEvent } from '../../interfaces/Event';
 import error from '../../util/Emojis';
 
-export const event: Event = {
+export const event: MineflayerEvent = {
 	name: 'kicked',
 	runOnce: false,
 	run: async (bot, reason: string, loggedIn: boolean) => {

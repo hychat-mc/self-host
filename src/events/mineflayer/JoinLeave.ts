@@ -1,8 +1,8 @@
-import { Event } from '../../interfaces/Event';
+import { MineflayerEvent } from '../../interfaces/Event';
 import { Util } from 'discord.js';
 import Emojis from '../../util/Emojis';
 
-export const event: Event = {
+export const event: MineflayerEvent = {
 	name: 'chat:joinLeave',
 	runOnce: false,
 	run: async (bot, message) => {

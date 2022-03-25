@@ -5,14 +5,15 @@ import path from 'path';
 
 import regex from '../util/Regex';
 import isObjKey from '../util/IsObjKey';
-import { Client, Intents } from 'discord.js';
+import { Client, Intents, TextChannel } from 'discord.js';
+import EventEmitter from 'events';
 
 class Bot {
 	public logger = consola;
 
 	public discord = new Client({ intents: [Intents.FLAGS.GUILD_MESSAGES] });
-	public memberChannel = this.discord.channels.cache.get(process.env.MEMBER_CHANNEL_ID as string);
-	public officerChannel = this.discord.channels.cache.get(process.env.OFFICER_CHANNEL_ID as string);
+	public memberChannel?: TextChannel;
+	public officerChannel?: TextChannel;
 
 	public onlineCount = 0;
 	public totalCount = 125;
@@ -22,7 +23,7 @@ class Bot {
 		host: 'mc.hypixel.net',
 		version: '1.16.4',
 		logErrors: true,
-		hideErrors: false,
+		hideErrors: true,
 		auth: process.env.MINECRAFT_AUTH_TYPE as 'microsoft' | 'mojang',
 		checkTimeoutInterval: 30000,
 		defaultChatPatterns: false,
@@ -44,7 +45,7 @@ class Bot {
 		this.mineflayer.chat(message);
 	}
 
-	private async loadEvents(dir = '../events') {
+	private async loadEvents(dir: string, emitter: EventEmitter) {
 		const files = await fs.readdir(path.join(__dirname, dir));
 		const options: chatPatternOptions = { repeat: true, parse: true };
 
@@ -52,11 +53,11 @@ class Bot {
 			const stat = await fs.lstat(path.join(__dirname, dir, file));
 
 			if (stat.isDirectory()) {
-				await this.loadEvents(path.join(dir, file));
+				await this.loadEvents(path.join(dir, file), emitter);
 			} else {
 				if (!(file.endsWith('.ts') || file.endsWith('.js'))) continue;
 				try {
-					const {name, runOnce, run} = (await import(path.join(__dirname, dir, file))).event;
+					const { name, runOnce, run } = (await import(path.join(__dirname, dir, file))).event;
 
 					if (!name) {
 						console.warn(`The event ${path.join(__dirname, dir, file)} doesn't have a name!`);
@@ -74,11 +75,11 @@ class Bot {
 					}
 
 					if (runOnce) {
-						this.mineflayer.once(name, run.bind(null, this));
+						emitter.once(name, run.bind(null, this));
 						continue;
 					}
 
-					this.mineflayer.on(name, run.bind(null, this));
+					emitter.on(name, run.bind(null, this));
 
 					// eslint-disable-next-line @typescript-eslint/no-explicit-any
 				} catch (e: any) {
@@ -92,7 +93,8 @@ class Bot {
 		await this.discord.login(process.env.BOT_TOKEN);
 
 		this.mineflayer.setMaxListeners(20);
-		await this.loadEvents();
+		await this.loadEvents('../events/discord', this.discord);
+		await this.loadEvents('../events/mineflayer', this.mineflayer);
 	}
 }
 

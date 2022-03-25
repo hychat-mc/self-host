@@ -1,7 +1,7 @@
-import { Event } from '../../interfaces/Event';
+import { MineflayerEvent } from '../../interfaces/Event';
 import { ChatMessage } from 'prismarine-chat';
 
-export const event: Event = {
+export const event: MineflayerEvent = {
 	name: 'message',
 	runOnce: false,
 	run: async (bot, message: ChatMessage) => {

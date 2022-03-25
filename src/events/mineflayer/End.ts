@@ -1,6 +1,6 @@
-import { Event } from '../../interfaces/Event';
+import { MineflayerEvent } from '../../interfaces/Event';
 
-export const event: Event = {
+export const event: MineflayerEvent = {
 	name: 'end',
 	runOnce: false,
 	run: async (bot) => {

@@ -1,7 +1,7 @@
-import { Event } from '../../interfaces/Event';
+import { MineflayerEvent } from '../../interfaces/Event';
 import { MessageEmbed } from 'discord.js';
 
-export const event: Event = {
+export const event: MineflayerEvent = {
 	name: 'chat:questTierComplete',
 	runOnce: false,
 	run: async (bot, completedTier: number) => {

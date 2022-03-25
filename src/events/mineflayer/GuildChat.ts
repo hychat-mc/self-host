@@ -1,10 +1,10 @@
 import { Util } from 'discord.js';
 
-import { Event } from '../../interfaces/Event';
+import { MineflayerEvent } from '../../interfaces/Event';
 import { ChatMessage } from 'prismarine-chat';
 import Emojis from '../../util/Emojis';
 
-export const event: Event = {
+export const event: MineflayerEvent = {
 	name: 'chat:guildChat',
 	runOnce: false,
 	run: async (bot, message: ChatMessage) => {
