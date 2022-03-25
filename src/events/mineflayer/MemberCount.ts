@@ -1,20 +1,22 @@
-import { Execute } from '../../interfaces/Event';
+import { Event } from '../../interfaces/Event';
 
-export const name = 'chat:memberCount';
+export const event: Event = {
+	name: 'chat:memberCount',
+	runOnce: false,
+	run: async (bot, message) => {
+		const messageArray: string[] = message.toString().split(',');
 
-export const run: Execute = async (bot, message) => {
-	const messageArray: string[] = message.toString().split(',');
+		const type = messageArray[0] as 'Online' | 'Total';
+		const count = Number(messageArray[1]) as number;
 
-	const type = messageArray[0] as 'Online' | 'Total';
-	const count = Number(messageArray[1]) as number;
+		// Set the online members count
+		if (type === 'Online') {
+			bot.onlineCount = count;
+		}
 
-	// Set the online members count
-	if (type === 'Online') {
-		bot.onlineCount = count;
-	}
-
-	// Set the total members count
-	if (type === 'Total') {
-		bot.totalCount = count;
-	}
+		// Set the total members count
+		if (type === 'Total') {
+			bot.totalCount = count;
+		}
+	},
 };

@@ -1,12 +1,14 @@
-import { Execute } from '../../interfaces/Event';
+import { Event } from '../../interfaces/Event';
 
-export const name = 'error';
+export const event: Event = {
+	name: 'error',
+	runOnce: false,
+	run: async (bot, error: Error) => {
+		bot.logger.error('Encountered an unexpected error. Restarting the bot in 15 seconds...');
+		bot.logger.error(error);
 
-export const run: Execute = async (bot, error: Error) => {
-	bot.logger.error('Encountered an unexpected error. Restarting the bot in 15 seconds...');
-	bot.logger.error(error);
-
-	setTimeout(() => {
-		process.exit(1);
-	}, 15_000);
+		setTimeout(() => {
+			process.exit(1);
+		}, 15_000);
+	},
 };

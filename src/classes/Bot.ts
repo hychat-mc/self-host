@@ -4,7 +4,6 @@ import fs from 'fs/promises';
 import path from 'path';
 
 import regex from '../util/Regex';
-import { Event } from '../interfaces/Event';
 import isObjKey from '../util/IsObjKey';
 import { Client, Intents } from 'discord.js';
 
@@ -57,7 +56,7 @@ class Bot {
 			} else {
 				if (!(file.endsWith('.ts') || file.endsWith('.js'))) continue;
 				try {
-					const { name, run, runOnce } = (await import(path.join(__dirname, dir, file))) as Event;
+					const {name, runOnce, run} = (await import(path.join(__dirname, dir, file))).event;
 
 					if (!name) {
 						console.warn(`The event ${path.join(__dirname, dir, file)} doesn't have a name!`);

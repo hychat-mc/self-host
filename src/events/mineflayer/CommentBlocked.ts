@@ -1,15 +1,17 @@
-import { Execute } from '../../interfaces/Event';
+import { Event } from '../../interfaces/Event';
 
-export const name = 'chat:commentBlocked';
+export const event: Event = {
+	name: 'chat:commentBlocked',
+	runOnce: false,
+	run: async (bot, message) => {
+		const messageArray: string[] = message.toString().split(',');
 
-export const run: Execute = async (bot, message) => {
-	const messageArray: string[] = message.toString().split(',');
+		const comment = messageArray[0] as string;
+		const reason = messageArray[1] as string;
 
-	const comment = messageArray[0] as string;
-	const reason = messageArray[1] as string;
-
-	bot.logger.warn(`Comment blocked: ${comment} (${reason})`);
-	bot.officerChatHook.send(
-		`The "${comment}" was blocked by Hypixel because "${reason}". Developers will not take responsibility for banned accounts.`,
-	);
+		bot.logger.warn(`Comment blocked: ${comment} (${reason})`);
+		bot.officerChatHook.send(
+			`The "${comment}" was blocked by Hypixel because "${reason}". Developers will not take responsibility for banned accounts.`,
+		);
+	},
 };

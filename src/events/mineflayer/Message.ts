@@ -1,9 +1,11 @@
-import { Execute } from '../../interfaces/Event';
+import { Event } from '../../interfaces/Event';
 import { ChatMessage } from 'prismarine-chat';
 
-export const name = 'message';
-
-export const run: Execute = async (bot, message: ChatMessage) => {
-	// Log color chat to console
-	bot.logger.log(message.toAnsi());
+export const event: Event = {
+	name: 'message',
+	runOnce: false,
+	run: async (bot, message: ChatMessage) => {
+		// Log color chat to console
+		bot.logger.log(message.toAnsi());
+	},
 };

@@ -4,7 +4,7 @@ import { BotEvents } from 'mineflayer';
 
 export interface Event {
 	name: keyof typeof regex | keyof BotEvents;
-	runOnce?: true;
+	runOnce: boolean;
 	run: Execute;
 }
 

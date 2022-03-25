@@ -1,7 +1,9 @@
-import { Execute } from '../../interfaces/Event';
+import { Event } from '../../interfaces/Event';
 
-export const name = 'chat:sameMessageTwice';
-
-export const run: Execute = async (bot) => {
-	bot.chatHook.send('`You cannot say the same message twice!`');
+export const event: Event = {
+	name: 'chat:sameMessageTwice',
+	runOnce: false,
+	run: async (bot) => {
+		bot.chatHook.send('`You cannot say the same message twice!`');
+	},
 };
