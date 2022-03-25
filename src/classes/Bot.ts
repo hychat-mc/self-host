@@ -47,11 +47,11 @@ class Bot {
 			: await this.officerChannel?.send({ embeds: embeds });
 	}
 
-	public async sendGuildMessage(message: string): Promise<void> {
-		await this.executeCommand(`/gc ${message}`);
+	public async sendGuildMessage(channel: 'gc' | 'oc', message: string) {
+		await this.executeCommand(`/${channel} ${message}`);
 	}
 
-	public async executeCommand(message: string): Promise<void> {
+	public async executeCommand(message: string) {
 		this.mineflayer.chat(message);
 	}
 
