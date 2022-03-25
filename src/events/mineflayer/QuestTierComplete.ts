@@ -11,8 +11,6 @@ export const event: Event = {
 			.setColor('BLUE')
 			.setTimestamp();
 
-		return await bot.chatHook.send({
-			embeds: [embed],
-		});
+		return await bot.sendEmbed('gc', [embed]);
 	},
 };

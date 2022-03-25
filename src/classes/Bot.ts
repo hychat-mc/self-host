@@ -5,7 +5,7 @@ import path from 'path';
 
 import regex from '../util/Regex';
 import isObjKey from '../util/IsObjKey';
-import { Client, Intents, TextChannel } from 'discord.js';
+import { Client, Intents, MessageEmbed, TextChannel } from 'discord.js';
 import EventEmitter from 'events';
 
 class Bot {
@@ -39,6 +39,12 @@ class Bot {
 
 	public async sendToDiscord(channel: 'gc' | 'oc', content: string) {
 		channel === 'gc' ? await this.memberChannel?.send(content) : await this.officerChannel?.send(content);
+	}
+
+	public async sendEmbed(channel: 'gc' | 'oc', embeds: MessageEmbed[]) {
+		channel === 'gc'
+			? await this.memberChannel?.send({ embeds: embeds })
+			: await this.officerChannel?.send({ embeds: embeds });
 	}
 
 	public async sendGuildMessage(message: string): Promise<void> {
