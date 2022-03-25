@@ -13,20 +13,22 @@ export const event: Event = {
 
 		if (status === 'joined') {
 			bot.onlineCount++;
-			await bot.chatHook.send({
-				content: `${Emojis.join} ${Util.escapeMarkdown(playerName)} joined. (\`${bot.onlineCount}\`/\`${
+			await bot.sendToDiscord(
+				'gc',
+				`${Emojis.join} ${Util.escapeMarkdown(playerName)} joined. (\`${bot.onlineCount}\`/\`${
 					bot.totalCount
 				}\`)`,
-			});
+			);
 		}
 
 		if (status === 'left') {
 			bot.onlineCount--;
-			await bot.chatHook.send({
-				content: `${Emojis.leave} ${Util.escapeMarkdown(playerName)} left. (\`${bot.onlineCount}\`/\`${
+			await bot.sendToDiscord(
+				'gc',
+				`${Emojis.leave} ${Util.escapeMarkdown(playerName)} left. (\`${bot.onlineCount}\`/\`${
 					bot.totalCount
 				}\`)`,
-			});
+			);
 		}
 	},
 };

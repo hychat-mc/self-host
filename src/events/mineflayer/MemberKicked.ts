@@ -12,7 +12,8 @@ export const event: Event = {
 		const kickedByHypixelRank = messageArray[2] as string | null;
 		const kickedByPlayerName = messageArray[3] as string;
 
-		await bot.chatHook.send(
+		await bot.sendToDiscord(
+			'gc',
 			`${hypixelRank ?? ''}${Util.escapeMarkdown(playerName)} was kicked by ${
 				kickedByHypixelRank + ' ' ?? ''
 			}${Util.escapeMarkdown(kickedByPlayerName)}`,

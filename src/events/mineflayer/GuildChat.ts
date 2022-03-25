@@ -22,7 +22,7 @@ export const event: Event = {
 			' ' + guildRank ?? ''
 		}: ${Util.escapeMarkdown(chatMessage)}`;
 		channel === 'Guild'
-			? await bot.chatHook.send(Emojis.member + formattedMessage)
-			: await bot.officerChatHook.send(Emojis.officer + formattedMessage);
+			? await bot.sendToDiscord('gc', Emojis.member + formattedMessage)
+			: await bot.sendToDiscord('oc', Emojis.officer + formattedMessage);
 	},
 };

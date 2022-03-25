@@ -37,7 +37,11 @@ class Bot {
 		}
 	}
 
-	public async sendMessage(message: string): Promise<void> {
+	public async sendToDiscord(channel: 'gc' | 'oc', content: string) {
+		channel === 'gc' ? await this.memberChannel?.send(content) : await this.officerChannel?.send(content);
+	}
+
+	public async sendGuildMessage(message: string): Promise<void> {
 		await this.executeCommand(`/gc ${message}`);
 	}
 

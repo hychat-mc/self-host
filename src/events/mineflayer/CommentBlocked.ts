@@ -10,7 +10,8 @@ export const event: Event = {
 		const reason = messageArray[1] as string;
 
 		bot.logger.warn(`Comment blocked: ${comment} (${reason})`);
-		bot.officerChatHook.send(
+		bot.sendToDiscord(
+			'gc',
 			`The "${comment}" was blocked by Hypixel because "${reason}". Developers will not take responsibility for banned accounts.`,
 		);
 	},

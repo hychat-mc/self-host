@@ -13,7 +13,8 @@ export const event: Event = {
 		const guildRankFrom = messageArray[3] as string;
 		const guildRankTo = messageArray[4] as string;
 
-		await bot.chatHook.send(
+		await bot.sendToDiscord(
+			'gc',
 			`${hypixelRank ?? ''}${Util.escapeMarkdown(
 				playerName,
 			)} was ${changeType} to ${guildRankTo} from ${guildRankFrom}!`,

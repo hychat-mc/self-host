@@ -10,6 +10,6 @@ export const event: Event = {
 		const hypixelRank = messageArray[0] as string | null;
 		const playerName = messageArray[1] as string;
 
-		await bot.chatHook.send(`${hypixelRank ?? ''}${Util.escapeMarkdown(playerName)} left the guild!`);
+		await bot.sendToDiscord('gc', `${hypixelRank ?? ''}${Util.escapeMarkdown(playerName)} left the guild!`);
 	},
 };
