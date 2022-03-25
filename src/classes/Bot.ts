@@ -8,11 +8,12 @@ import { Event } from '../interfaces/Event';
 import isObjKey from '../util/IsObjKey';
 import { Client, Intents } from 'discord.js';
 
-class Bot extends Client {
+class Bot {
 	public logger = consola;
 
-	public memberChannel = this.channels.cache.get(process.env.MEMBER_CHANNEL_ID as string);
-	public officerChannel = this.channels.cache.get(process.env.OFFICER_CHANNEL_ID as string);
+	public discord = new Client({ intents: [Intents.FLAGS.GUILD_MESSAGES] });
+	public memberChannel = this.discord.channels.cache.get(process.env.MEMBER_CHANNEL_ID as string);
+	public officerChannel = this.discord.channels.cache.get(process.env.OFFICER_CHANNEL_ID as string);
 
 	public onlineCount = 0;
 	public totalCount = 125;
@@ -29,10 +30,6 @@ class Bot extends Client {
 	});
 
 	constructor() {
-		super({
-			intents: [Intents.FLAGS.GUILD_MESSAGES],
-		});
-
 		try {
 			this.start();
 		} catch (error) {
@@ -78,11 +75,11 @@ class Bot extends Client {
 					}
 
 					if (runOnce) {
-						this.mineflayer.once(name, (...params: any[]) => run(this, ...params));
+						this.mineflayer.once(name, run.bind(null, this));
 						continue;
 					}
 
-					this.mineflayer.on(name, (...params: any[]) => run(this, ...params));
+					this.mineflayer.on(name, run.bind(null, this));
 
 					// eslint-disable-next-line @typescript-eslint/no-explicit-any
 				} catch (e: any) {
@@ -93,7 +90,7 @@ class Bot extends Client {
 	}
 
 	private async start() {
-		await this.login(process.env.BOT_TOKEN);
+		await this.discord.login(process.env.BOT_TOKEN);
 
 		this.mineflayer.setMaxListeners(20);
 		await this.loadEvents();

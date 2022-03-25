@@ -6,7 +6,4 @@ export const name = 'interactionCreate';
 
 export const run: Execute = async (bot: Bot, interaction: Interaction) => {
 	if (!interaction.isCommand()) return;
-
-	
-
 };

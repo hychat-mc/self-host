@@ -4,6 +4,4 @@ import Bot from '../../classes/Bot';
 
 export const name = 'messageCreate';
 
-export const run: Execute = async (bot: Bot, message: Message) => {
-    
-};
+export const run: Execute = async (bot: Bot, message: Message) => {};
