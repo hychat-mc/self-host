@@ -16,8 +16,6 @@ export const event: Event = {
 		const guildRank = messageArray[3] as string | null;
 		const chatMessage = messageArray[4] as string;
 
-		if (playerName === bot.mineflayer.username) return;
-
 		const formattedMessage = ` ${hypixelRank ?? ''}${Util.escapeMarkdown(playerName)}${
 			' ' + guildRank ?? ''
 		}: ${Util.escapeMarkdown(chatMessage)}`;
