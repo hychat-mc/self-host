@@ -16,9 +16,9 @@ export const event: Event = {
 		const guildRank = messageArray[3] as string | null;
 		const chatMessage = messageArray[4] as string;
 
-		const formattedMessage = ` ${hypixelRank ?? ''}${Util.escapeMarkdown(playerName)}${
+		const formattedMessage = ` **${hypixelRank ?? ''}${Util.escapeMarkdown(playerName)}${
 			' ' + guildRank ?? ''
-		}: ${Util.escapeMarkdown(chatMessage)}`;
+		}:** ${Util.escapeMarkdown(chatMessage)}`;
 		channel === 'Guild'
 			? await bot.sendToDiscord('gc', Emojis.member + formattedMessage)
 			: await bot.sendToDiscord('oc', Emojis.officer + formattedMessage);
