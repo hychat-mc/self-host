@@ -59,6 +59,10 @@ class Bot {
 		for (let i = 0; i < 12; i++) await this.executeCommand('/');
 	}
 
+	public async setStatus() {
+		if (this.discord.isReady()) this.discord.user!.setActivity(`${this.onlineCount} online players | hych.at`, { type: 'WATCHING' });
+	}
+
 	private async loadEvents(dir: string, emitter: EventEmitter) {
 		const files = await fs.readdir(path.join(__dirname, dir));
 		const options: chatPatternOptions = { repeat: true, parse: true };

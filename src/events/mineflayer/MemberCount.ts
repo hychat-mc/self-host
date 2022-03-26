@@ -18,5 +18,7 @@ export const event: Event = {
 		if (type === 'Total') {
 			bot.totalCount = count;
 		}
+
+		await bot.setStatus();
 	},
 };
