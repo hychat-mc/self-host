@@ -80,8 +80,7 @@ class Bot {
 					}
 
 					if (isObjKey(name, regex)) {
-						this.mineflayer.addChatPattern(name, regex[name], options);
-						continue;
+						this.mineflayer.addChatPattern(name.replace('chat:', ''), regex[name], options);
 					}
 
 					if (runOnce) {
