@@ -55,6 +55,10 @@ class Bot {
 		this.mineflayer.chat(message);
 	}
 
+	public async sendToLimbo() {
+		for (let i = 0; i < 12; i++) await this.executeCommand('/');
+	}
+
 	private async loadEvents(dir: string, emitter: EventEmitter) {
 		const files = await fs.readdir(path.join(__dirname, dir));
 		const options: chatPatternOptions = { repeat: true, parse: true };
