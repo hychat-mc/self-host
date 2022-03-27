@@ -23,4 +23,6 @@ export default {
 	 * Officer Message Emoji
 	 */
 	error: '❌',
+
+	// TODO - 27/03/2022: Add emoji adding/removing command, (tells user if not enough slots)
 };

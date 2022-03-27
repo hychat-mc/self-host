@@ -4,7 +4,7 @@ export const event: Event = {
 	name: 'login',
 	runOnce: true,
 	run: async (bot) => {
-		await bot.sendToDiscord('gc', ' The bot has logged in and is now ready!');
+		await bot.sendToDiscord('gc', 'The bot has logged in and is now ready!');
 
 		setInterval(() => {
 			bot.executeCommand('/g online');
