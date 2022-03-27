@@ -7,7 +7,7 @@ export default {
 		description: 'Promote or demote a user in the guild!',
 		options: [
 			{
-				name: 'command type',
+				name: 'type',
 				description: 'Would you like to promote or demote the user?',
 				type: 'STRING',
 				choices: [
@@ -32,15 +32,15 @@ export default {
 	},
 
 	run: async (bot, interaction, args) => {
-		const commandType: string = args[0] as 'promote' | 'demote';
+		const type: string = args[0] as 'promote' | 'demote';
 		const user: string = args[1];
 
-		await bot.executeCommand(`/g ${commandType} ${user}`);
+		await bot.executeCommand(`/g ${type} ${user}`);
 
 		const embed = new MessageEmbed()
-			.setTitle(`${commandType}d!`)
-			.setDescription(`${user} has been ${commandType}d!`)
-			.setColor('RED');
+			.setTitle(`${type}d!`)
+			.setDescription(`${user} has been ${type}d!`)
+			.setColor(type === 'promote' ? 'GREEN' : 'RED');
 
 		await interaction.reply({
 			embeds: [embed],

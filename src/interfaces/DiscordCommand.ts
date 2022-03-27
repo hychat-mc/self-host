@@ -1,15 +1,9 @@
-import { ApplicationCommandOption } from 'discord.js';
+import { ApplicationCommandData } from 'discord.js';
 import { CommandInteraction } from 'discord.js';
 import Bot from '../classes/Bot';
 
 export interface Command {
-	data: {
-		name: string;
-		description?: string;
-		type?: number;
-		options?: ApplicationCommandOption[];
-	};
-	permission?: string[];
+	data: ApplicationCommandData;
 	run: ExecuteCommand;
 }
 

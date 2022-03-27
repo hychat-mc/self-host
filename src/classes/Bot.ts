@@ -129,12 +129,9 @@ class Bot {
 					}
 
 					if (!command.run) {
-						console.warn(
-							`The command ${path.join(__dirname, dir, file)} doesn't have an executable function!`,
-						);
+						console.warn(`The command ${command.data.name} doesn't have an executable function!`);
 						continue;
 					}
-
 
 					this.discord.commands.set(command.data.name, command);
 				} catch (e: any) {

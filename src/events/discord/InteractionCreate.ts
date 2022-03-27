@@ -30,7 +30,7 @@ export const event: Event = {
 		try {
 			command.run(bot, interaction, args);
 		} catch (e: any) {
-			await interaction.followUp({
+			await interaction.reply({
 				content: 'There was an error while executing this command!',
 				ephemeral: true,
 			});
