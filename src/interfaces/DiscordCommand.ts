@@ -1,21 +1,18 @@
-import { CommandInteraction, Message } from 'discord.js';
+import { ApplicationCommandOption } from 'discord.js';
+import { CommandInteraction } from 'discord.js';
 import Bot from '../classes/Bot';
 
 export interface Command {
-	name: string;
-	aliases?: string[];
-	description?: string;
-	cooldown?: boolean;
-	devOnly?: boolean;
-	usage?: string;
-	runCommand: ExecuteCommand;
-	runSlashCommand: ExecuteSlashCommand;
+	data: {
+		name: string;
+		description?: string;
+		type?: number;
+		options?: ApplicationCommandOption[];
+	};
+	permission?: string[];
+	run: ExecuteCommand;
 }
 
 export interface ExecuteCommand {
-	(client: Bot, message: Message, args: string[]): Promise<unknown>;
-}
-
-export interface ExecuteSlashCommand {
-	(client: Bot, interaction: CommandInteraction): Promise<unknown>;
+	(bot: Bot, interaction: CommandInteraction, args: any[]): Promise<unknown>;
 }
