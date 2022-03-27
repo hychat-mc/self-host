@@ -1,6 +1,6 @@
 import { Event } from '../../interfaces/Event';
 
-export const event: Event = {
+export default {
 	name: 'chat:commentBlocked',
 	runOnce: false,
 	run: async (bot, message) => {
@@ -15,4 +15,4 @@ export const event: Event = {
 			`The "${comment}" was blocked by Hypixel because "${reason}". Developers will not take responsibility for banned accounts.`,
 		);
 	},
-};
+} as Event;

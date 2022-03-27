@@ -1,7 +1,7 @@
 import { Event } from '../../interfaces/Event';
 import { ChatMessage } from 'prismarine-chat';
 
-export const event: Event = {
+export default {
 	name: 'message',
 	runOnce: false,
 	run: async (bot, message: ChatMessage) => {
@@ -10,4 +10,4 @@ export const event: Event = {
 
 		// TODO - 27/03/2022: Catch permission errors for guild commands and send to officer chat
 	},
-};
+} as Event;

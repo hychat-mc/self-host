@@ -1,7 +1,7 @@
 import { Event } from '../../interfaces/Event';
 import error from '../../util/Emojis';
 
-export const event: Event = {
+export default {
 	name: 'kicked',
 	runOnce: false,
 	run: async (bot, reason: string, loggedIn: boolean) => {
@@ -58,4 +58,4 @@ export const event: Event = {
 			process.exit(1);
 		}, 15_000);
 	},
-};
+} as Event;

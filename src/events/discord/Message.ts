@@ -3,7 +3,7 @@ import { Message, Util } from 'discord.js';
 import Bot from '../../classes/Bot';
 import BadWords from '../../util/BadWords';
 
-export const event: Event = {
+export default {
 	name: 'messageCreate',
 	runOnce: false,
 	run: async (bot: Bot, message: Message) => {
@@ -35,4 +35,4 @@ export const event: Event = {
 		message.content = `${message.member.displayName} > ${Util.escapeMarkdown(message.content)}`;
 		await bot.sendGuildMessage(message.channel === bot.memberChannel ? 'gc' : 'oc', message.content);
 	},
-};
+} as Event;

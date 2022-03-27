@@ -2,7 +2,7 @@ import { Event } from '../../interfaces/Event';
 import { Interaction } from 'discord.js';
 import Bot from '../../classes/Bot';
 
-export const event: Event = {
+export default {
 	name: 'interactionCreate',
 	runOnce: false,
 	run: async (bot: Bot, interaction: Interaction) => {
@@ -37,4 +37,4 @@ export const event: Event = {
 			bot.logger.error(`An error occured in ${interaction.commandName}: ${e.message}`);
 		}
 	},
-};
+} as Event;

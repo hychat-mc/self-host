@@ -1,7 +1,7 @@
 import { Event } from '../../interfaces/Event';
 import { MessageEmbed } from 'discord.js';
 
-export const event: Event = {
+export default {
 	name: 'chat:guildLevelUp',
 	runOnce: false,
 	run: async (bot, message) => {
@@ -17,4 +17,4 @@ export const event: Event = {
 
 		return await bot.sendEmbed('gc', [embed]);
 	},
-};
+} as Event;

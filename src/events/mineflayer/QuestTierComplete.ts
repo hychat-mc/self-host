@@ -1,7 +1,7 @@
 import { Event } from '../../interfaces/Event';
 import { MessageEmbed } from 'discord.js';
 
-export const event: Event = {
+export default {
 	name: 'chat:questTierComplete',
 	runOnce: false,
 	run: async (bot, completedTier: number) => {
@@ -13,4 +13,4 @@ export const event: Event = {
 
 		return await bot.sendEmbed('gc', [embed]);
 	},
-};
+} as Event;

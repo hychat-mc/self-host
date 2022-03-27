@@ -1,6 +1,6 @@
 import { Event } from '../../interfaces/Event';
 
-export const event: Event = {
+export default {
 	name: 'chat:memberCount',
 	runOnce: false,
 	run: async (bot, message) => {
@@ -21,4 +21,4 @@ export const event: Event = {
 
 		await bot.setStatus();
 	},
-};
+} as Event;

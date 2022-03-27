@@ -1,6 +1,6 @@
 import { Event } from '../../interfaces/Event';
 
-export const event: Event = {
+export default {
 	name: 'login',
 	runOnce: true,
 	run: async (bot) => {
@@ -15,4 +15,4 @@ export const event: Event = {
 			await bot.sendToLimbo();
 		}, 3_000);
 	},
-};
+} as Event;

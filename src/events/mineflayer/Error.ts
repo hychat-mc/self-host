@@ -1,6 +1,6 @@
 import { Event } from '../../interfaces/Event';
 
-export const event: Event = {
+export default {
 	name: 'error',
 	runOnce: false,
 	run: async (bot, error: Error) => {
@@ -11,4 +11,4 @@ export const event: Event = {
 			process.exit(1);
 		}, 15_000);
 	},
-};
+} as Event;

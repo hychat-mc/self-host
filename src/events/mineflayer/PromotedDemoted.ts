@@ -1,7 +1,7 @@
 import { Util } from 'discord.js';
 import { Event } from '../../interfaces/Event';
 
-export const event: Event = {
+export default {
 	name: 'chat:promotedDemoted',
 	runOnce: false,
 	run: async (bot, message) => {
@@ -20,4 +20,4 @@ export const event: Event = {
 			)} was ${changeType} to ${guildRankTo} from ${guildRankFrom}!`,
 		);
 	},
-};
+} as Event;

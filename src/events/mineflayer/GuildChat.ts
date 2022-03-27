@@ -4,7 +4,7 @@ import { Event } from '../../interfaces/Event';
 import { ChatMessage } from 'prismarine-chat';
 import Emojis from '../../util/Emojis';
 
-export const event: Event = {
+export default {
 	name: 'chat:guildChat',
 	runOnce: false,
 	run: async (bot, message: ChatMessage) => {
@@ -23,4 +23,4 @@ export const event: Event = {
 			? await bot.sendToDiscord('gc', Emojis.member + formattedMessage)
 			: await bot.sendToDiscord('oc', Emojis.officer + formattedMessage);
 	},
-};
+} as Event;

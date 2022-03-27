@@ -1,7 +1,7 @@
 import { Util } from 'discord.js';
 import { Event } from '../../interfaces/Event';
 
-export const event: Event = {
+export default {
 	name: 'chat:memberKicked',
 	runOnce: false,
 	run: async (bot, message) => {
@@ -19,4 +19,4 @@ export const event: Event = {
 			}${Util.escapeMarkdown(kickedByPlayerName)}`,
 		);
 	},
-};
+} as Event;

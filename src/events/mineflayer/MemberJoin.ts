@@ -1,7 +1,7 @@
 import { Util } from 'discord.js';
 import { Event } from '../../interfaces/Event';
 
-export const event: Event = {
+export default {
 	name: 'chat:memberJoin',
 	runOnce: false,
 	run: async (bot, message) => {
@@ -12,4 +12,4 @@ export const event: Event = {
 
 		await bot.sendToDiscord('gc', `${hypixelRank ?? ''}${Util.escapeMarkdown(playerName)} joined the guild!`);
 	},
-};
+} as Event;

@@ -79,7 +79,7 @@ class Bot {
 			} else {
 				if (!(file.endsWith('.ts') || file.endsWith('.js'))) continue;
 				try {
-					const { name, runOnce, run } = (await import(path.join(__dirname, dir, file))).event;
+					const { name, runOnce, run } = (await import(path.join(__dirname, dir, file))).default;
 
 					if (!name) {
 						console.warn(`The event ${path.join(__dirname, dir, file)} doesn't have a name!`);
