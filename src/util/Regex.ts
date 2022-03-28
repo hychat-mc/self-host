@@ -104,10 +104,15 @@ export default {
 	'chat:questComplete': /^\s{17}GUILD QUEST COMPLETED!$/,
 
 	/**
-	 * When the bot detects its not in limbo
+	 * When the bot detects its not in Limbo
 	 */
 	'chat:lobbyJoin':
 		/^(?:\s>>>\s)?\[.*]\s[\w]{2,17} (?:joined the lobby!|spooked into the lobby!|slid into the lobby!)(?:\s<<<)?$/,
+
+	/**
+	 * When the bot detects it is in Limbo
+	 */
+	'chat:limboJoin': /^You were spawned in Limbo.$/,
 
 	/**
 	 * When a message is blocked for containing suspicious content
@@ -116,7 +121,8 @@ export default {
 	 *  - Comment blocked
 	 *  - Reason
 	 */
-	'chat:commentBlocked': /^We blocked your comment "(.+)" as it is breaking our rules because (.+)$/,
+	'chat:commentBlocked':
+		/^We blocked your comment "(.+)" as it is breaking our rules because (.+). https:\/\/www.hypixel.net\/rules\/$/,
 
 	/**
 	 * When a message is sent repeatedly

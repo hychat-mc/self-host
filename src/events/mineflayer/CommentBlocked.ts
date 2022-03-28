@@ -9,10 +9,10 @@ export default {
 		const comment = messageArray[0] as string;
 		const reason = messageArray[1] as string;
 
-		bot.logger.warn(`Comment blocked: ${comment} (${reason})`);
+		bot.logger.warn(`Comment blocked by Hypixel: ${comment} (${reason})`);
 		bot.sendToDiscord(
-			'gc',
-			`The "${comment}" was blocked by Hypixel because "${reason}". Developers will not take responsibility for banned accounts.`,
+			'oc',
+			`:rotating_light: "${comment}" was blocked by Hypixel because **${reason}**. Hychat developers will not take responsibility for banned accounts.`,
 		);
 	},
 } as Event;

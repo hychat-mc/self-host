@@ -28,7 +28,12 @@ export default {
 		}
 
 		if (BadWords.some((word) => message.content.includes(word))) {
-			await message.channel.send(`Warning: ${message.author.username}, you may not use profane language!`);
+			await message.channel.send(`:warning: ${message.author.username}, you may not use profane language!`);
+			bot.logger.warn(`Comment blocked by Hychat: ${message.content} (matched bad words list)`);
+			bot.sendToDiscord(
+				'oc',
+				`:warning: <@${message.author.id}> tried to say "${message.content}" but was blocked by Hychat (matched bad words list). This message was not sent to Hypixel.`,
+			);
 			return;
 		}
 
