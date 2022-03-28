@@ -37,7 +37,9 @@ export default {
 			return;
 		}
 
-		message.content = `${message.member.displayName} > ${Util.escapeMarkdown(message.content)}`;
+		message.content = `${message.member.displayName} > ${Util.escapeMarkdown(
+			message.content.replace(/\r?\n|\r/g, ' '),
+		)}`;
 		await bot.sendGuildMessage(message.channel === bot.memberChannel ? 'gc' : 'oc', message.content);
 	},
 } as Event;
