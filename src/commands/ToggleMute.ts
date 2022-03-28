@@ -1,5 +1,6 @@
 import { MessageEmbed } from 'discord.js';
 import { Command } from '../interfaces/DiscordCommand';
+import CapitaliseString from '../util/CapitaliseString';
 
 export default {
 	data: {
@@ -32,7 +33,7 @@ export default {
 				options: [
 					{
 						name: 'user',
-						description: 'What is the name of the user you want to mute?',
+						description: 'What is the name of the user you want to unmute?',
 						type: 'STRING',
 						required: true,
 					},
@@ -49,7 +50,7 @@ export default {
 		await bot.executeCommand(`/g ${type} ${user} ${duration}`);
 
 		const embed = new MessageEmbed()
-			.setTitle(`${type}d!`)
+			.setTitle(await CapitaliseString(`${type}d!`))
 			.setDescription(`${user} was ${type}d` + (type === 'mute' ? ` for ${duration}!` : '!'))
 			.setColor(type === 'mute' ? 'RED' : 'GREEN');
 
