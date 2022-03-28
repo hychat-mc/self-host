@@ -62,8 +62,9 @@ class Bot {
 	}
 
 	public async setStatus() {
+		const plural = this.onlineCount - 1 !== 1
 		if (this.discord.isReady()) {
-			this.discord.user!.setActivity(`${this.onlineCount} online players | hych.at`, { type: 'WATCHING' });
+			this.discord.user!.setActivity(`${this.onlineCount} online player${plural ? 's' : ''} | hych.at`, { type: 'WATCHING' });
 		}
 	}
 
