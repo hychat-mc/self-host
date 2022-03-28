@@ -1,5 +1,5 @@
 import { Intents, MessageEmbed, TextChannel } from 'discord.js';
-import { chatPatternOptions, createBot } from 'mineflayer';
+import { createBot } from 'mineflayer';
 import consola from 'consola';
 import fs from 'fs/promises';
 import path from 'path';
@@ -69,7 +69,6 @@ class Bot {
 
 	private async loadEvents(dir: string, emitter: EventEmitter) {
 		const files = await fs.readdir(path.join(__dirname, dir));
-		const options: chatPatternOptions = { repeat: true, parse: true };
 
 		for (const file of files) {
 			const stat = await fs.lstat(path.join(__dirname, dir, file));
@@ -92,7 +91,10 @@ class Bot {
 					}
 
 					if (isObjKey(name, regex)) {
-						this.mineflayer.addChatPattern(name.replace('chat:', ''), regex[name], options);
+						this.mineflayer.addChatPattern(name.replace('chat:', ''), regex[name], {
+							repeat: true,
+							parse: true,
+						});
 					}
 
 					if (runOnce) {
