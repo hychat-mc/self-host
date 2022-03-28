@@ -51,7 +51,7 @@ export default {
 
 		const embed = new MessageEmbed()
 			.setTitle(await CapitaliseString(`${type}d!`))
-			.setDescription(`${user} was ${type}d` + (type === 'mute' ? ` for ${duration}!` : '!'))
+			.setDescription(`\`${user}\` was ${type}d` + (type === 'mute' ? ` for ${duration}!` : '!'))
 			.setColor(type === 'mute' ? 'RED' : 'GREEN');
 
 		await interaction.reply({

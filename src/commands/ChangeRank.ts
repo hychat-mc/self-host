@@ -40,7 +40,7 @@ export default {
 
 		const embed = new MessageEmbed()
 			.setTitle(await CapitaliseString(`${type}d!`))
-			.setDescription(`${user} has been ${type}d!`)
+			.setDescription(`\`${user}\` has been ${type}d!`)
 			.setColor(type === 'promote' ? 'GREEN' : 'RED');
 
 		await interaction.reply({
