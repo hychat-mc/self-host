@@ -8,7 +8,7 @@ export default {
 	runOnce: false,
 	run: async (bot: Bot, message: Message) => {
 		if (
-			message.content.startsWith(process.env.PREFIX as string) ||
+			message.content.startsWith(bot.botPrefix) ||
 			message.author.bot ||
 			message.attachments.size > 0 ||
 			message.member === null ||
@@ -17,7 +17,7 @@ export default {
 			return;
 
 		if (message.content.length > 217) {
-			await message.channel.send(`Your message is too long! ${message.content.length}/217`);
+			await message.channel.send(`Your message is too long! \`${message.content.length}/217\``);
 			return;
 		}
 
@@ -37,7 +37,7 @@ export default {
 			return;
 		}
 
-		message.content = `${message.member.displayName} > ${Util.escapeMarkdown(
+		message.content = `${message.member.displayName} ${bot.chatSeparator} ${Util.escapeMarkdown(
 			message.content.replace(/\r?\n|\r/g, ' '),
 		)}`;
 		await bot.sendGuildMessage(message.channel === bot.memberChannel ? 'gc' : 'oc', message.content);
