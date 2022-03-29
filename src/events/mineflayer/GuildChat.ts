@@ -1,7 +1,6 @@
 import { Util } from 'discord.js';
-
-import { Event } from '../../interfaces/Event';
 import { ChatMessage } from 'prismarine-chat';
+import { Event } from '../../interfaces/Event';
 import Emojis from '../../util/Emojis';
 
 export default {

@@ -1,5 +1,5 @@
-import { Event } from '../../interfaces/Event';
 import { Util } from 'discord.js';
+import { Event } from '../../interfaces/Event';
 import Emojis from '../../util/Emojis';
 
 export default {

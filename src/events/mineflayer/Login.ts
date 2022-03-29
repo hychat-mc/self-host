@@ -1,5 +1,5 @@
 import { Event } from '../../interfaces/Event';
-import success from '../../util/Emojis';
+import Emojis from '../../util/Emojis';
 
 export default {
 	name: 'login',
@@ -7,7 +7,7 @@ export default {
 	run: async (bot) => {
 		await bot.sendToDiscord(
 			'gc',
-			`${success} **The bot \`${bot.mineflayer.username}\` has logged in and is now ready!**`,
+			`${Emojis.success} **The bot \`${bot.mineflayer.username}\` has logged in and is now ready!**`,
 		);
 
 		setInterval(() => {

@@ -1,6 +1,6 @@
 import { Util } from 'discord.js';
-import guildEvent from '../../util/Emojis';
 import { Event } from '../../interfaces/Event';
+import Emojis from '../../util/Emojis';
 
 export default {
 	name: 'chat:memberJoin',
@@ -13,7 +13,7 @@ export default {
 
 		await bot.sendToDiscord(
 			'gc',
-			`${guildEvent} ${hypixelRank ?? ''}${Util.escapeMarkdown(playerName)} joined the guild!`,
+			`${Emojis.guildEvent} ${hypixelRank ?? ''}${Util.escapeMarkdown(playerName)} joined the guild!`,
 		);
 	},
 } as Event;

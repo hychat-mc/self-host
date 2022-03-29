@@ -30,6 +30,11 @@ export default {
 	error: '❌',
 
 	/**
+	 * Alert Emoji
+	 */
+	alert: '🚨',
+
+	/**
 	 * Guild Celebratory Event Emoji
 	 */
 	guildEvent: '🎉',
