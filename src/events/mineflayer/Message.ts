@@ -7,7 +7,5 @@ export default {
 	run: async (bot, message: ChatMessage) => {
 		// Log color chat to console
 		bot.logger.log(message.toAnsi());
-
-		// // Handle general errors
 	},
 } as Event;

@@ -3,7 +3,6 @@ import { createBot } from 'mineflayer';
 import consola from 'consola';
 import fs from 'fs/promises';
 import path from 'path';
-import { setTimeout as wait } from 'node:timers/promises';
 
 import Discord from './Client';
 import regex from '../util/Regex';
@@ -60,16 +59,18 @@ class Bot {
 	}
 
 	public async executeTask(task: string) {
+		// @ts-ignore - unused resolve parameter
 		await new Promise((resolve, reject) => {
 			this.mineflayer.chat(task);
 			this.mineflayer.on('message', (message) => {
-				message
-					.toMotd()
-					.match(/^§c(.+)§r$/)
-					?.forEach((line) => {
-						if (line.includes('§') || line.includes('limbo')) return;
-						reject(line);
-					});
+				const motd = message.toMotd();
+				const match = motd.match(/^(.+)§c(.+)§r$/) ?? motd.match(/^§c(.+)§r$/);
+
+				match?.forEach((line) => {
+					if (line.includes('§') || line.includes('limbo')) return;
+					if (line.includes('is not in your guild!')) return reject(`That player ${line}`);
+					reject(line);
+				});
 			});
 		});
 	}
@@ -173,5 +174,9 @@ class Bot {
 		await this.discord.login(process.env.BOT_TOKEN);
 	}
 }
+
+process
+	.on('uncaughtException', (err) => bot.logger.error(err))
+	.on('unhandledRejection', (err) => bot.logger.error(err));
 
 export default Bot;

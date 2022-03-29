@@ -35,16 +35,20 @@ export default {
 	run: async (bot, interaction, args) => {
 		const type: string = args[0] as 'promote' | 'demote';
 		const user: string = args[1];
+
+		let embed: MessageEmbed;
 		try {
 			await bot.executeTask(`/g ${type} ${user}`);
+			embed = new MessageEmbed()
+				.setTitle(await CapitaliseString(`${type}d!`))
+				.setDescription(`${user} has been ${type}d!`)
+				.setColor(type === 'promote' ? 'GREEN' : 'RED');
 		} catch (e) {
-			bot.logger.error(e);
+			embed = new MessageEmbed()
+				.setColor('RED')
+				.setTitle('Error')
+				.setDescription(e as string);
 		}
-
-		const embed = new MessageEmbed()
-			.setTitle(await CapitaliseString(`${type}d!`))
-			.setDescription(`${user} has been ${type}d!`)
-			.setColor(type === 'promote' ? 'GREEN' : 'RED');
 
 		await interaction.reply({
 			embeds: [embed],

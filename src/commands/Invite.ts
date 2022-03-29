@@ -18,12 +18,19 @@ export default {
 	run: async (bot, interaction, args) => {
 		const user = args[0];
 
-		await bot.executeCommand(`/g invite ${user}`);
-
-		const embed = new MessageEmbed()
-			.setTitle('Invited!')
-			.setDescription(`\`${user}\` has been invited to the guild!`)
-			.setColor('GREEN');
+		let embed: MessageEmbed;
+		try {
+			await bot.executeTask(`/g invite ${user}`);
+			embed = new MessageEmbed()
+				.setTitle('Invited!')
+				.setDescription(`\`${user}\` has been invited to the guild!`)
+				.setColor('GREEN');
+		} catch (e) {
+			embed = new MessageEmbed()
+				.setColor('RED')
+				.setTitle('Error')
+				.setDescription(e as string);
+		}
 
 		await interaction.reply({ embeds: [embed] });
 	},
