@@ -36,15 +36,15 @@ export default {
 		const type: string = args[0] as 'promote' | 'demote';
 		const user: string = args[1];
 
-		let embed: MessageEmbed;
+		const embed = new MessageEmbed();
 		try {
 			await bot.executeTask(`/g ${type} ${user}`);
-			embed = new MessageEmbed()
+			embed
 				.setTitle(await CapitaliseString(`${type}d!`))
 				.setDescription(`${user} has been ${type}d!`)
 				.setColor(type === 'promote' ? 'GREEN' : 'RED');
 		} catch (e) {
-			embed = new MessageEmbed()
+			embed
 				.setColor('RED')
 				.setTitle('Error')
 				.setDescription(e as string);
