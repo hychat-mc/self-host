@@ -18,7 +18,7 @@ class Bot {
 	public memberChannel?: TextChannel;
 	public officerChannel?: TextChannel;
 	public botPrefix = process.env.DISCORD_PREFIX as string ?? 'h!';
-	public chatSeparator = process.env.MINECRAFT_CHAT_SEPERATOR as string ?? '>';
+	public chatSeparator = process.env.MINECRAFT_CHAT_SEPARATOR as string ?? '>';
 
 	public onlineCount = 0;
 	public totalCount = 125;
