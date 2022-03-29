@@ -40,6 +40,6 @@ export default {
 		message.content = `${message.member.displayName} ${bot.chatSeparator} ${Util.escapeMarkdown(
 			message.content.replace(/\r?\n|\r/g, ' '),
 		)}`;
-		await bot.sendGuildMessage(message.channel === bot.memberChannel ? 'gc' : 'oc', message.content);
+		await bot.sendGuildMessage(message.channel.id === bot.memberChannel.id ? 'gc' : 'oc', message.content);
 	},
 } as Event;
