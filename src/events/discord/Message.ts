@@ -23,8 +23,9 @@ export default {
 
 		try {
 			await message.delete();
-		} catch {
+		} catch (e) {
 			await message.channel.send(`Warning: ${message.author.username}, could not delete message.`);
+			bot.logger.error(e);
 		}
 
 		if (BadWords.some((word) => message.content.includes(word))) {
