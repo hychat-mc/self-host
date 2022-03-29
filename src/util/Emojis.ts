@@ -20,9 +20,24 @@ export default {
 	officer: '📢',
 
 	/**
-	 * Officer Message Emoji
+	 * Success Emoji
+	 */
+	success: '✅',
+
+	/**
+	 * Error Emoji
 	 */
 	error: '❌',
+
+	/**
+	 * Guild Celebratory Event Emoji
+	 */
+	guildEvent: '🎉',
+
+	/**
+	 * Guild Negative Event Emoji
+	 */
+	badGuildEvent: '👋',
 
 	// TODO - 27/03/2022: Add emoji adding/removing command, (tells user if not enough slots)
 };

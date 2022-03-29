@@ -1,4 +1,5 @@
 import { Event } from '../../interfaces/Event';
+import guildEvent from '../../util/Emojis';
 import { MessageEmbed } from 'discord.js';
 
 export default {
@@ -6,10 +7,8 @@ export default {
 	runOnce: false,
 	run: async (bot, completedTier: number) => {
 		const embed = new MessageEmbed()
-			.setTitle('Quest Tier Complete')
-			.setDescription(`The guild has completed Tier ${completedTier} of this week's Guild Quest!`)
-			.setColor('BLUE')
-			.setTimestamp();
+			.setDescription(`${guildEvent} The guild has completed Tier ${completedTier} of this week's Guild Quest!`)
+			.setColor('#36393F');
 
 		return await bot.sendEmbed('gc', [embed]);
 	},

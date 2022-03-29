@@ -1,4 +1,5 @@
 import { Util } from 'discord.js';
+import badGuildEvent from '../../util/Emojis';
 import { Event } from '../../interfaces/Event';
 
 export default {
@@ -10,6 +11,9 @@ export default {
 		const hypixelRank = messageArray[0] as string | null;
 		const playerName = messageArray[1] as string;
 
-		await bot.sendToDiscord('gc', `${hypixelRank ?? ''}${Util.escapeMarkdown(playerName)} left the guild!`);
+		await bot.sendToDiscord(
+			'gc',
+			`${badGuildEvent} ${hypixelRank ?? ''}${Util.escapeMarkdown(playerName)} left the guild!`,
+		);
 	},
 } as Event;

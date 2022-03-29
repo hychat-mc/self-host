@@ -1,4 +1,5 @@
 import { Util } from 'discord.js';
+import guildEvent from '../../util/Emojis';
 import { Event } from '../../interfaces/Event';
 
 export default {
@@ -15,7 +16,7 @@ export default {
 
 		await bot.sendToDiscord(
 			'gc',
-			`${hypixelRank ?? ''}${Util.escapeMarkdown(
+			`${guildEvent} ${hypixelRank ?? ''}${Util.escapeMarkdown(
 				playerName,
 			)} was ${changeType} to ${guildRankTo} from ${guildRankFrom}!`,
 		);

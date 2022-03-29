@@ -10,10 +10,8 @@ export default {
 		const guildLevel = Number(messageArray[0]) as number;
 
 		const embed = new MessageEmbed()
-			.setTitle('Guild Level Up!')
 			.setDescription(`The guild has leveled up to level **${guildLevel}**!`)
-			.setColor('GREEN')
-			.setTimestamp();
+			.setColor('#00AA00');
 
 		return await bot.sendEmbed('gc', [embed]);
 	},

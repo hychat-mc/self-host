@@ -1,4 +1,5 @@
 import { Event } from '../../interfaces/Event';
+import guildEvent from '../../util/Emojis';
 import { MessageEmbed } from 'discord.js';
 
 export default {
@@ -6,10 +7,8 @@ export default {
 	runOnce: false,
 	run: async (bot) => {
 		const embed = new MessageEmbed()
-			.setTitle('Quest Complete')
-			.setDescription("The guild has completed this week's Guild Quest!") // eslint-disable-line quotes
-			.setColor('GREEN')
-			.setTimestamp();
+			.setDescription(`${guildEvent} The guild has completed this week's Guild Quest!`)
+			.setColor('#FFAA00');
 
 		return await bot.sendEmbed('gc', [embed]);
 	},

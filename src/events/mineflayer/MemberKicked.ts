@@ -1,4 +1,5 @@
 import { Util } from 'discord.js';
+import badGuildEvent from '../../util/Emojis';
 import { Event } from '../../interfaces/Event';
 
 export default {
@@ -14,7 +15,7 @@ export default {
 
 		await bot.sendToDiscord(
 			'gc',
-			`${hypixelRank ?? ''}${Util.escapeMarkdown(playerName)} was kicked by ${
+			`${badGuildEvent} ${hypixelRank ?? ''}${Util.escapeMarkdown(playerName)} was kicked by ${
 				kickedByHypixelRank + ' ' ?? ''
 			}${Util.escapeMarkdown(kickedByPlayerName)}`,
 		);

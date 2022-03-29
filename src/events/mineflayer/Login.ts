@@ -1,10 +1,14 @@
 import { Event } from '../../interfaces/Event';
+import success from '../../util/Emojis';
 
 export default {
 	name: 'login',
 	runOnce: true,
 	run: async (bot) => {
-		await bot.sendToDiscord('gc', 'The bot has logged in and is now ready!');
+		await bot.sendToDiscord(
+			'gc',
+			`${success} **The bot \`${bot.mineflayer.username}\` has logged in and is now ready!**`,
+		);
 
 		setInterval(() => {
 			bot.executeCommand('/g online');
