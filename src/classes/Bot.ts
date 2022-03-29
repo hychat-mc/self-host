@@ -9,6 +9,7 @@ import regex from '../util/Regex';
 import isObjKey from '../util/IsObjKey';
 import EventEmitter from 'events';
 import { Command } from '../interfaces/DiscordCommand';
+import bot from '..';
 
 class Bot {
 	public logger = consola;
@@ -57,14 +58,33 @@ class Bot {
 		this.mineflayer.chat(message);
 	}
 
+	public async executeTask(task: string) {
+		// @ts-ignore - unused resolve parameter
+		await new Promise((resolve, reject) => {
+			this.mineflayer.chat(task);
+			this.mineflayer.on('message', (message) => {
+				const motd = message.toMotd();
+				const match = motd.match(/^(.+)§c(.+)§r$/) ?? motd.match(/^§c(.+)§r$/);
+
+				match?.forEach((line) => {
+					if (line.includes('§') || line.includes('limbo')) return;
+					if (line.includes('is not in your guild!')) return reject(`That player ${line}`);
+					reject(line);
+				});
+			});
+		});
+	}
+
 	public async sendToLimbo() {
 		for (let i = 0; i < 12; i++) await this.executeCommand('/');
 	}
 
 	public async setStatus() {
-		const plural = this.onlineCount - 1 !== 1
+		const plural = this.onlineCount - 1 !== 1;
 		if (this.discord.isReady()) {
-			this.discord.user!.setActivity(`${this.onlineCount} online player${plural ? 's' : ''} | hych.at`, { type: 'WATCHING' });
+			this.discord.user!.setActivity(`${this.onlineCount} online player${plural ? 's' : ''} | hych.at`, {
+				type: 'WATCHING',
+			});
 		}
 	}
 
@@ -154,5 +174,9 @@ class Bot {
 		await this.discord.login(process.env.BOT_TOKEN);
 	}
 }
+
+process
+	.on('uncaughtException', (err) => bot.logger.error(err))
+	.on('unhandledRejection', (err) => bot.logger.error(err));
 
 export default Bot;

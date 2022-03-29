@@ -7,7 +7,5 @@ export default {
 	run: async (bot, message: ChatMessage) => {
 		// Log color chat to console
 		bot.logger.log(message.toAnsi());
-
-		// TODO - 27/03/2022: Catch permission errors for guild commands and send to officer chat
 	},
 } as Event;

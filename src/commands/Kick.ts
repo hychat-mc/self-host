@@ -25,13 +25,20 @@ export default {
 		const user: string = args[0];
 		const reason: string = args[1];
 
-		await bot.executeCommand(`/g kick ${user} ${reason}`);
-
-		const embed = new MessageEmbed()
-			.setTitle('Kicked!')
-			.setDescription(`\`${user}\` has been kicked for \`${reason}\``)
-			.setColor('RED');
-
+		let embed: MessageEmbed;
+		try {
+			await bot.executeTask(`/g kick ${user} ${reason}`);
+			embed = new MessageEmbed()
+				.setTitle('Kicked!')
+				.setDescription(`\`${user}\` has been kicked for \`${reason}\``)
+				.setColor('RED');
+		} catch (e) {
+			embed = new MessageEmbed()
+				.setColor('RED')
+				.setTitle('Error')
+				.setDescription(e as string);
+		}
+		
 		await interaction.reply({ embeds: [embed] });
 	},
 } as Command;

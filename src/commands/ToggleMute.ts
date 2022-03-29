@@ -47,12 +47,20 @@ export default {
 		const user: string = args[0];
 		const duration: string = args[1];
 
-		await bot.executeCommand(`/g ${type} ${user} ${duration}`);
+		let embed: MessageEmbed;
+		try {
+			await bot.executeTask(`/g ${type} ${user} ${duration}`);
+			embed = new MessageEmbed()
+				.setTitle(await CapitaliseString(`${type}d!`))
+				.setDescription(`${user} was ${type}d` + (type === 'mute' ? ` for ${duration}!` : '!'))
+				.setColor(type === 'mute' ? 'RED' : 'GREEN');
+		} catch (e) {
+			embed = new MessageEmbed()
 
-		const embed = new MessageEmbed()
-			.setTitle(await CapitaliseString(`${type}d!`))
-			.setDescription(`\`${user}\` was ${type}d` + (type === 'mute' ? ` for ${duration}!` : '!'))
-			.setColor(type === 'mute' ? 'RED' : 'GREEN');
+				.setColor('RED')
+				.setTitle('Error')
+				.setDescription(e as string);
+		}
 
 		await interaction.reply({
 			embeds: [embed],
