@@ -46,11 +46,11 @@ export default {
 		} else {
 			await bot.sendToDiscord(
 				'gc',
-				`${error} The bot was kicked from the server. Restarting the bot in 15 seconds...`,
+				`${error} The bot was kicked from the server for an unknown reason. Restarting the bot in 15 seconds...`,
 			);
 		}
 
-		bot.logger.warn(
+		bot.logger.error(
 			`The bot was kicked from the server. Restarting the bot in 15 seconds...\nReason: ${reason}\nLogged in: ${loggedIn}`,
 		);
 

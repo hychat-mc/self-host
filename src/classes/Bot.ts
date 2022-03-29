@@ -4,12 +4,12 @@ import consola from 'consola';
 import fs from 'fs/promises';
 import path from 'path';
 
+import bot from '..';
 import Discord from './Client';
 import regex from '../util/Regex';
 import isObjKey from '../util/IsObjKey';
 import EventEmitter from 'events';
 import { Command } from '../interfaces/DiscordCommand';
-import bot from '..';
 
 class Bot {
 	public logger = consola;
