@@ -1,13 +1,13 @@
 /*
-hypixel-guild-chat-ts
+Hychat Self-Hosted Version
 
-Original Copyright 2022 Matt G<46137770+xMdb@users.noreply.github.com> and contributors.
+Original Copyright 2022 Matt G <46137770+xMdb@users.noreply.github.com>.
 
 The following code is a derivative work of the code from the hypixel-guild-chat-bot project,
 which is licensed GPLv3. This code therefore is also licensed under the terms
 of the GNU Public License, version 3.
 
-Copyright 2022 EvernoteMC <evernoteminecraft@gmail.com> and contributors.
+Copyright 2022 Hychat.
 */
 
 export default {
