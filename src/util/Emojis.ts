@@ -30,6 +30,11 @@ export default {
 	error: '❌',
 
 	/**
+	 * Warning Emoji
+	 */
+	warning: '⚠️',
+
+	/**
 	 * Alert Emoji
 	 */
 	alert: '🚨',
