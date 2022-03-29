@@ -3,12 +3,14 @@ import { createBot } from 'mineflayer';
 import consola from 'consola';
 import fs from 'fs/promises';
 import path from 'path';
+import { setTimeout as wait } from 'node:timers/promises';
 
 import Discord from './Client';
 import regex from '../util/Regex';
 import isObjKey from '../util/IsObjKey';
 import EventEmitter from 'events';
 import { Command } from '../interfaces/DiscordCommand';
+import bot from '..';
 
 class Bot {
 	public logger = consola;
@@ -57,14 +59,31 @@ class Bot {
 		this.mineflayer.chat(message);
 	}
 
+	public async executeTask(task: string) {
+		await new Promise((resolve, reject) => {
+			this.mineflayer.chat(task);
+			this.mineflayer.on('message', (message) => {
+				message
+					.toMotd()
+					.match(/^§c(.+)§r$/)
+					?.forEach((line) => {
+						if (line.includes('§') || line.includes('limbo')) return;
+						reject(line);
+					});
+			});
+		});
+	}
+
 	public async sendToLimbo() {
 		for (let i = 0; i < 12; i++) await this.executeCommand('/');
 	}
 
 	public async setStatus() {
-		const plural = this.onlineCount - 1 !== 1
+		const plural = this.onlineCount - 1 !== 1;
 		if (this.discord.isReady()) {
-			this.discord.user!.setActivity(`${this.onlineCount} online player${plural ? 's' : ''} | hych.at`, { type: 'WATCHING' });
+			this.discord.user!.setActivity(`${this.onlineCount} online player${plural ? 's' : ''} | hych.at`, {
+				type: 'WATCHING',
+			});
 		}
 	}
 

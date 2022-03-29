@@ -35,8 +35,11 @@ export default {
 	run: async (bot, interaction, args) => {
 		const type: string = args[0] as 'promote' | 'demote';
 		const user: string = args[1];
-
-		await bot.executeCommand(`/g ${type} ${user}`);
+		try {
+			await bot.executeTask(`/g ${type} ${user}`);
+		} catch (e) {
+			bot.logger.error(e);
+		}
 
 		const embed = new MessageEmbed()
 			.setTitle(await CapitaliseString(`${type}d!`))
