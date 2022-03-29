@@ -1,5 +1,5 @@
 import { Intents, MessageEmbed, TextChannel } from 'discord.js';
-import { createBot } from 'mineflayer';
+import { BotEvents, createBot } from 'mineflayer';
 import consola from 'consola';
 import fs from 'fs/promises';
 import path from 'path';
@@ -61,6 +61,8 @@ class Bot {
 	}
 
 	public async executeTask(task: string) {
+		let listener: BotEvents['message'];
+
 		// @ts-ignore - unused resolve parameter
 		await new Promise((resolve, reject) => {
 			this.mineflayer.chat(task);
@@ -74,6 +76,11 @@ class Bot {
 					reject(line);
 				});
 			});
+
+			const messageListeners = this.mineflayer.listeners('message');
+			listener = messageListeners[messageListeners.length - 1] as BotEvents['message'];
+		}).finally(() => {
+			this.mineflayer.removeListener('message', listener);
 		});
 	}
 
