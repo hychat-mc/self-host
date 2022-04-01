@@ -5,8 +5,6 @@ export default [
 	'kys',
 	'send yourself',
 	'blackass',
-	'nigger',
-	'ejactulate',
 	'ejactulate',
 	'fag',
 	'faggot',
